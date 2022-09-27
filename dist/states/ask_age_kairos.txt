@@ -1,0 +1,13 @@
+*You: "I... you... who... how old are YOU?"
+
+*Kairos: "I suppose that's a fair question. It must be strange seeing a child in this timeline, right? Bet you haven't seen one of those in years. 60 years, if I'm right. To answer your question, I'm 5 years old at the moment. As for how long I've lived... hard to say. Hundreds of years? Thousands?"
+
+*Kairos: "By the way, you ARE over 60, right? Because if you're not, I'm wasting my time here. Not that my time is in finite supply, but shit, I've got things to do."
+
+*You: ...
+
+[I'm 72 years old]
+
+-------------------------------------------------------------------------------
+
+[I'm 72 years old] tell_age_kairos

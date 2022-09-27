@@ -1,0 +1,18 @@
+The Calamity occurred 60 years ago; it has been 60 years since you've seen another human being. You owe your long life to four factors: fresh water from the local streams, now long untouched by the pollution of industry; a half-competence with the bow and arrow which you have honed to mastery over the years, earning you a steady supply of rabbits and the occasional large game; an incredible stroke of fortune (or misfortune) allowing you to survive the mysterious event that killed everyone you had ever known in an instant; and an almost-repressed awareness that you are, in all likelihood, the last of your species, and you're not ready for the end of humanity just yet.
+
+Today, you are on the road. You've spent the past month living in your abandoned [childhood home], and while you appreciated the nostalgia of the place, you found it was outweighed by your memories of the day you lost everything. Besides, you never stay in one place for long. To settle down feels too much like acceptance of your fate. Who knows? Maybe one day, you'll find someone else out there. You don't really believe it, but you've been wrong before.
+
+Now, you find yourself frozen in disbelief as your half-century of solitude is broken, not by another aged survivor like yourself, but by a small child, wearing a strange outfit and a stranger wristwatch.
+
+*???: "...yes. Yes! I knew there must be someone left. No way that bastard Chronos kills every single one of them, right? He's good, but he's not perfect. Someone was bound to slip through the cracks."
+
+*???: "Anyway. You can call me Kairos, but names don't really matter right now. More importantly, [how old are you]?"
+
+*You: ( What should I say? I can click the bracketed dialogue option below, or ANY bracketed option from the story so far, though they won't necessarily get me a response. Use the mouse wheel to look back in the story for more potential options. )
+
+[I'm 72 years old]
+
+-------------------------------------------------------------------------------
+
+[I'm 72 years old] tell_age_kairos
+[how old are you] ask_age_kairos

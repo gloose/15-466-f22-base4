@@ -1,0 +1,14 @@
+*You: "I'm you from the future. I decided not to kill anyone."
+
+*Chronos: "Well, obviously you're me. Who else can do what we do?"
+
+*Chronos: "I don't know what happened to me in the future for me to become so weak minded, but if that's all there is, I'd rather make that decision myself. You really should have known better than to think I could talk myself out of absolute power."
+
+*Chronos: "Now, unless you want to join them in their fate, you have ten minutes to get out of my timeline."
+
+With that, he ends the conversation. Where do you want to go now?
+
+-------------------------------------------------------------------------------
+
+[childhood home] childhood_home
+[60 years forward] return_present

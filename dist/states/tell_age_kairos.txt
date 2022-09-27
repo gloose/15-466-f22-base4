@@ -1,0 +1,32 @@
+*You: "I... I'm 72 years old."
+
+*Kairos: "72! I can work with that. Listen, [I need you to do something for me]."
+
+*Kairos: "You see, I'm from the future. Well, not your future, but a future."
+
+*You: "...I don't understand."
+
+*Kairos: "Of course you don't. This whole timeline was clueless about time travel, wasn't it? I gotta hand it to Chronos, he may be a monster, but his genius really was unmatched if this was his competition. No offense."
+
+*Kairos: "Alright, alright. I'll give you the crash course. This is gonna be some real Chronology 101 shit, please try to keep up."
+
+*Kairos: "Rule 1: When you travel from the present to the past, you create a new timeline. The new one is identical the one you left, except its present is at an earlier point in time and now there's an extra copy of you in it who came from the future."
+
+*Kairos: "Rule 2: Because it's a new timeline, anything you do there doesn't affect your present, and you can't get paradoxes. Kill your past self all you like."
+
+*Kairos: "Rule 3: The only known method of time travel involves a device that draws on your age as fuel. Go to [25 years ago] in the past, as I did, and you come out 25 years younger. If you're 30 years old and you go [60 years back], you come out -30. In other words, you cease to exist."
+
+*Kairos: "Rule 4: A time machine can return to the present of any timeline that it's been to before. Same rules apply, if you go [25 years forward] you get 25 years older. If you go [60 years forward], you get 60 years older. But I would advise against doing that at your age. When you instantly become 132 years old, people tend to... expire."
+
+*Kairos: "Alright, still with me?"
+
+*You: ...
+
+[Makes perfect sense]
+
+[Not really]
+
+-------------------------------------------------------------------------------
+
+[Makes perfect sense] kairos_request
+[Not really] kairos_request
