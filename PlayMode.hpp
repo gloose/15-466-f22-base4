@@ -8,13 +8,13 @@
 #include <array>
 
 //#include "../nest-libs/windows/glm/include/glm/glm.hpp"
-#include "../nest-libs/windows/harfbuzz/include/hb.h"
-#include "../nest-libs/windows/harfbuzz/include/hb-ft.h"
+//#include "../nest-libs/windows/harfbuzz/include/hb.h"
+//#include "../nest-libs/windows/harfbuzz/include/hb-ft.h"
 //#include "../nest-libs/windows/freetype/include/freetype/freetype.h"
 //#include "../nest-libs/windows/freetype/include/freetype/fttypes.h"
 #include <glm/glm.hpp>
-//#include <harfbuzz/include/hb.h>
-//#include <harfbuzz/include/hb-ft.h>
+#include <hb.h>
+#include <hb-ft.h>
 #include <freetype/freetype.h>
 #include <freetype/fttypes.h>
 
