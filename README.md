@@ -1,8 +1,8 @@
-# (TODO: your game's title)
+# Crisis Averted
 
-Author: (TODO: your name)
+Author: Greg Loose
 
-Design: (TODO: In two sentences or fewer, describe what is new and interesting about your game.)
+Design: Crisis Averted is a text-based adventure game about going back in time to prevent the apocalypse. Use your knowledge of the future to change the past and earn one of four different endings (one of which isn't a joke).
 
 Text Drawing: (TODO: how does the text drawing in this game work? Is text precomputed? Rendered at runtime? What files or utilities are involved?)
 
