@@ -1,0 +1,12 @@
+[dissuade him from genocide]
+
+*You: I thought I might discourage you from bringing about the end of humanity.
+
+*Z: "Ohhh, pleeease, [DON'T KILL THEM!]" So that's what you want? What do YOU know of my plans? WHO ARE YOU?
+
+[I'm a time traveler]
+
+-------------------------------------------------------------------------------
+
+[I'm a time traveler] dissuade_fail_1
+[yourself] dissuade_fail_2

@@ -1,0 +1,27 @@
+[No, I'm ready]
+
+*You: No, I think I'm ready.
+
+*Angela: Wonderful! Here, take these.
+
+Angela lets her arms drop to her sides, then relaxes her hands and shakes her wrists. With a deafening clatter, more watches than you can count drop to the floor in two piles at her sides. She keeps a few for herself, then steps back with a wide grin and makes a sweeping gesture towards the heap of metal at her feet.
+
+*Angela: Don't worry, they're quite sturdy. Take as many as you like. You might think you only need one, but you can always give away an extra, like I'm doing for you. You never know when you might need to send an old geezer back in time to do your dirty work for you. No offense.
+
+You gingerly take four watches from the pile and strap two to each wrist.
+
+*Angela: Anyway, don't let me keep you any longer! The past awaits. By the way, we dug up the Prof's personal information from historical records. His phone number and home address are on your watch. Feel free to [give him a call] if you think you can [dissuade him from genocide], but good luck with that. When you're as brilliant and delusional as he is, the only person you'll listen to is [yourself]. What I would recommend is, you find him at home, and, well... you know.
+
+She hands you a pistol from a hip holster that you hadn't noticed before, then mimes pulling a trigger accompanied by a sonorous 'POP' from her lips.
+
+You silently resolve not to use it. No matter what he's done, you can't imagine killing another living human being. More importantly, I didn't have time to write this ending.
+
+*Angela: And please, do come back here once you've saved the world. The watch can take you back to the present of a timeline it's been to before without creating a new branch. Link your watch with mine and I can find your timeline when I'm ready. Of course, yours will always be 60 years behind this one, but if I can hold out until I'm 60 years old again I should be able to join you. I'll return the favor to my predecessor as well. It's a long wait, but more than worth it for a zombie-free world.
+
+She flashes you a pained, but hopeful smile, then turns away. You glance down at one of your watches and find a pleasantly simple user interface reminiscent of a calendar on a smart watch. You scroll back until you find a date that has been etched in your memory, then move the cursor to the start of the year to give yourself the time to do what needs to be done.
+
+[Go to 2034]
+
+-------------------------------------------------------------------------------
+
+[Go to 2034] start_past

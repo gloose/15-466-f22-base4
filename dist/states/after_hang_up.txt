@@ -1,0 +1,12 @@
+[Hang up]
+
+Well, that seemed like it wasn't going anywhere. What will you do now?
+
+[Go back to sleep]
+
+-------------------------------------------------------------------------------
+
+[Go back to sleep] ending_z
+[find him at home] find_z
+[Go to 2034] start_past
+[15 YEARS AGO] ending_o

@@ -1,0 +1,22 @@
+[timelines]
+
+*You: Slow down, child. What is a timeline?
+
+*Angela: Ahh, jumping straight to the tricky question, huh? To be honest with you, I hardly know anything about time travel.  I'm operating on second-hand... no, more like seventh-hand information. But I'll try to explain it to you as it was explained to me.
+
+*Angela: You probably thought time travel was impossible, right? Because of paradoxes. You go back in time and you kill yourself, but then how did you go back and do that if you were already dead? It doesn't make any sense.
+
+*Angela: The way it actually works is, I went back 63 years from my present into the past and created a new timeline. This one. It's exactly the same as the one I left, with two important differences: its present is 63 years behind, and past me gets to keep my memories of the future and a fancy wristwatch. Or several. You can really never be too careful.
+
+The loose-fitting loops of metal let out a dissonant jingle as the girl waves her arms for emphasis.
+
+*Angela: Anyway, since it's a new timeline, nothing I do here affects my present. I can't save my timeline, but with [your help], maybe I can create a better one.
+
+*Angela: Any other questions?
+
+[No, I'm ready]
+
+-------------------------------------------------------------------------------
+
+[your help] explain_mission
+[No, I'm ready] leave_present

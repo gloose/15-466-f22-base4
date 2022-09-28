@@ -1,6 +1,7 @@
 #include "read_write_chunk.hpp"
 #include <iostream>
-#include "../nest-libs/windows/glm/include/glm/glm.hpp"
+//#include "../nest-libs/windows/glm/include/glm/glm.hpp"
+#include <glm/glm.hpp>
 #include <algorithm>
 #include <fstream>
 #include <set>

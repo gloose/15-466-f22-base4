@@ -1,0 +1,13 @@
+[Go to 2034]
+
+In an instant, the world disappears around you, then comes back just as quickly. You find yourself lying in your bed in your childhood home. Through the window, you can see the sun just starting to rise over the sea of trees in your backyard. You know that, throughout the house, the family that you haven't seen in 60 years will be preparing for the start of their day. But you can see them later. You have work to do, don't you?
+
+( As of now, you can press the left and right WASD keys to look at different timelines. If you don't know what to do, maybe you learned something in another timeline that you can use. )
+
+[Go back to sleep]
+
+-------------------------------------------------------------------------------
+
+[Go back to sleep] ending_z
+[give him a call] call_z
+[15 YEARS AGO] ending_o

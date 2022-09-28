@@ -3,16 +3,20 @@
 #include "Scene.hpp"
 #include "Sound.hpp"
 
-#include "../nest-libs/windows/glm/include/glm/glm.hpp"
-
 #include <vector>
 #include <deque>
 #include <array>
 
+//#include "../nest-libs/windows/glm/include/glm/glm.hpp"
 #include "../nest-libs/windows/harfbuzz/include/hb.h"
 #include "../nest-libs/windows/harfbuzz/include/hb-ft.h"
-#include "../nest-libs/windows/freetype/include/freetype/freetype.h"
-#include "../nest-libs/windows/freetype/include/freetype/fttypes.h"
+//#include "../nest-libs/windows/freetype/include/freetype/freetype.h"
+//#include "../nest-libs/windows/freetype/include/freetype/fttypes.h"
+#include <glm/glm.hpp>
+//#include <harfbuzz/include/hb.h>
+//#include <harfbuzz/include/hb-ft.h>
+#include <freetype/freetype.h>
+#include <freetype/fttypes.h>
 
 struct PlayMode : Mode {
 	PlayMode();
@@ -48,6 +52,7 @@ struct PlayMode : Mode {
 		//Attribute (per-vertex variable) locations:
 		GLuint Position_vec2 = -1U;
 		GLuint TileCoord_ivec2 = -1U;
+		GLuint Color_vec4 = -1U;
 
 		//Uniform (per-invocation variable) locations:
 		GLuint OBJECT_TO_CLIP_mat4 = -1U;
@@ -63,12 +68,13 @@ struct PlayMode : Mode {
 
 		//vertex format for convenience:
 		struct Vertex {
-			Vertex(glm::ivec2 const& Position_, glm::ivec2 const& TileCoord_)
-				: Position(Position_), TileCoord(TileCoord_) { }
+			Vertex(glm::ivec2 const& Position_, glm::ivec2 const& TileCoord_, glm::u8vec4 Color_)
+				: Position(Position_), TileCoord(TileCoord_), Color(glm::vec4(Color_) / 255.f) { }
 			//I generally make class members lowercase, but I make an exception here because
 			// I use uppercase for vertex attributes in shader programs and want to match.
 			glm::ivec2 Position;
 			glm::ivec2 TileCoord;
+			glm::vec4 Color;
 		};
 
 		//vertex buffer that will store data stream:
@@ -90,12 +96,17 @@ struct PlayMode : Mode {
 		size_t speaker_end = 0;
 	};
 
+	// Struct that was going to represent a pre- or postcondition of a transition,
+	// but ended up just representing the name of the end state of a transition.
+	// I'm too tired to properly clean this up. Call it stupid code.
 	struct Condition {
 		size_t name_start = 0;
 		size_t name_end = 0;
 		bool negated = false;
 	};
 
+	// Struct representing a transition from a state to a set of new conditions, if preconditions are met
+	// I ended up not needing the preconditions, and the only postcondition I ever used was the state to end up in
 	struct Transition {
 		size_t trigger_start = 0;
 		size_t trigger_end = 0;
@@ -126,6 +137,7 @@ struct PlayMode : Mode {
 
 	std::vector<Trigger> triggers;
 
+	// Struct representing a timeline, including all of the state text inside of it
 	struct Timeline {
 		int index = 0;
 		int date = 0;
@@ -134,12 +146,8 @@ struct PlayMode : Mode {
 
 	std::vector<Timeline> timelines;
 	size_t current_timeline;
-	int timeline_width = 600;
-	int state_width = (int)(timeline_width * 0.9f);
-
-	int scroll_y = 0;
-	int scroll_speed = 32;
-	bool scroll_to_new_state = false;
+	int timeline_width = ScreenWidth / 2;
+	int state_width = (int)(timeline_width * 0.95f);
 
 	// Properties of the font used in the game
 	FT_Library ft_library;
@@ -154,8 +162,22 @@ struct PlayMode : Mode {
 	uint32_t num_chars = max_char - min_char + 1;
 	int font_size = 24;
 
+	int scroll_y = 0;
+	int scroll_speed = font_size * 2;
+	bool scroll_to_timeline_end = true;
+	int observing_timeline = 0;
+	int scroll_x = 0;
+
+	static inline glm::u8vec4 default_color = glm::u8vec4(0xff, 0xff, 0xc0, 0xff);
+	glm::u8vec4 trigger_color = glm::u8vec4(0xff, 0xff, 0x00, 0xff);
+	glm::u8vec4 date_color = glm::u8vec4(0xc0, 0x00, 0xff, 0xff);
+	glm::u8vec4 angela_color = glm::u8vec4(0xff, 0x80, 0xc0, 0xff);
+	glm::u8vec4 you_color = glm::u8vec4(0x80, 0xff, 0x80, 0xff);
+	glm::u8vec4 z_color = glm::u8vec4(0xc0, 0x00, 0x00, 0xff);
+	glm::u8vec4 timeline_index_color = glm::u8vec4(0xff, 0xff, 0xff, 0xff);
+
 	// Helper functions
-	int drawText(std::string text, glm::vec2 position, size_t width, std::vector<PPUDataStream::Vertex>* triangle_strip);
+	int drawText(std::string text, glm::vec2 position, size_t width, std::vector<PPUDataStream::Vertex>* triangle_strip, glm::u8vec4 color = default_color);
 	void drawTriangleStrip(const std::vector<PPUDataStream::Vertex>& triangle_strip);
 	int drawState(const State& state, glm::ivec2 position, std::vector<PPUDataStream::Vertex>* triangle_strip);
 	void drawTimeline(const Timeline& timeline, std::vector<PPUDataStream::Vertex>* triangle_strip);

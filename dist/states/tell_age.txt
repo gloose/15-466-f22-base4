@@ -1,0 +1,18 @@
+[I'm 72 years old]
+
+*You: I'm 72 years old.
+
+*Child: Wow, 72? You're the first person I've met who's even older than I am! With that many years, you could go all the way back and put an end to this in the next [timeline]!
+
+*Child: ...Forgive me, I'm getting ahead of myself. You must be very confused. My name is Angela. I came from the future, and now I need [your help].
+
+*Angela: Do you have any questions about anything I've said so far?
+
+[No, I'm ready]
+
+-------------------------------------------------------------------------------
+
+[timeline] explain_timelines
+[timelines] explain_timelines
+[your help] explain_mission
+[No, I'm ready] leave_present

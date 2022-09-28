@@ -1,0 +1,11 @@
+[how old are you]
+
+*You: I think the better question is, how old are YOU, child?
+
+*Child: That's a fair question. I must look very young to you, right? In truth, I'm 67 years old. I promise I'll explain, but first, please answer my question.
+
+[I'm 72 years old]
+
+-------------------------------------------------------------------------------
+
+[I'm 72 years old] tell_age

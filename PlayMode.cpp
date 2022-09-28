@@ -8,11 +8,18 @@
 #include "GL.hpp"
 #include "gl_compile_program.hpp"
 #include "read_write_chunk.hpp"
-#include "../nest-libs/windows/glm/include/glm/gtc/type_ptr.hpp"
+
+//#include "../nest-libs/windows/glm/include/glm/gtc/type_ptr.hpp"
 #include "../nest-libs/windows/harfbuzz/include/hb.h"
 #include "../nest-libs/windows/harfbuzz/include/hb-ft.h"
-#include "../nest-libs/windows/freetype/include/freetype/freetype.h"
-#include "../nest-libs/windows/freetype/include/freetype/fttypes.h"
+//#include "../nest-libs/windows/freetype/include/freetype/freetype.h"
+//#include "../nest-libs/windows/freetype/include/freetype/fttypes.h"
+#include <glm/gtc/type_ptr.hpp>
+//#include <harfbuzz/include/hb.h>
+//#include <harfbuzz/include/hb-ft.h>
+#include <freetype/freetype.h>
+#include <freetype/fttypes.h>
+
 #include <random>
 #include <stdlib.h>
 #include <stdio.h>
@@ -28,6 +35,8 @@ Load< PlayMode::PPUDataStream > data_stream(LoadTagDefault);
 
 PlayMode::PlayMode() {
 	// Adapted from Harfbuzz example linked on assignment page
+	// This font was obtained from https://fonts.google.com/specimen/Roboto
+	// See the license in dist/Robot/LICENSE.txt
 	std::string fontfilestring = data_path("Roboto/Roboto-Black.ttf");
 	const char* fontfile = fontfilestring.c_str();
 
@@ -132,32 +141,27 @@ void PlayMode::useTrigger(std::string name) {
 				// Found the new state
 
 				int target_date = timelines[current_timeline].date;
-				if (name == "60 years back") {
-					target_date -= 60;
-				} else if (name == "25 years back") {
-					target_date -= 25;
-				} else if (name == "60 years forward") {
-					target_date += 60;
-				} else if (name == "25 years forward") {
-					target_date += 25;
-				}
-				
-				for (size_t j = 0; j < timelines.size(); j++) {
-					if (timelines[j].date == target_date) {
-						current_timeline = j;
-					}
+				bool new_timeline = false;
+				if (name == "Go to 2034") {
+					target_date = 2034;
+					new_timeline = true;
+				} else if (name == "15 YEARS AGO") {
+					target_date = 2019;
+					new_timeline = true;
 				}
 
-				if (timelines[current_timeline].date != target_date) {
+				if (new_timeline) {
 					timelines.emplace_back();
 					timelines.back().date = target_date;
 					timelines.back().index = (int)timelines.size() - 1;
 					current_timeline = timelines.back().index;
+					observing_timeline = (int)current_timeline;
 				}
 				
 				timelines[current_timeline].states.push_back(states[new_state]);
-				scroll_to_new_state = true;
+				scroll_to_timeline_end = true;
 				current_state = new_state;
+				observing_timeline = (int)current_timeline;
 			}
 		}
 	}
@@ -169,10 +173,14 @@ bool PlayMode::handle_event(SDL_Event const& evt, glm::uvec2 const& window_size)
 			SDL_SetRelativeMouseMode(SDL_FALSE);
 			return true;
 		} else if (evt.key.keysym.sym == SDLK_a) {
+			observing_timeline = std::max(observing_timeline - 1, 0);
+			scroll_to_timeline_end = true;
 			left.downs += 1;
 			left.pressed = true;
 			return true;
 		} else if (evt.key.keysym.sym == SDLK_d) {
+			observing_timeline = std::min(observing_timeline + 1, (int)timelines.size() - 1);
+			scroll_to_timeline_end = true;
 			right.downs += 1;
 			right.pressed = true;
 			return true;
@@ -204,6 +212,7 @@ bool PlayMode::handle_event(SDL_Event const& evt, glm::uvec2 const& window_size)
 		SDL_GetMouseState(&x, &y);
 		y = ScreenHeight - y;
 		y += scroll_y;
+		x += scroll_x;
 		for (size_t i = 0; i < triggers.size(); i++) {
 			Trigger& trigger = triggers[i];
 			if (x > trigger.position.x && x < trigger.position.x + trigger.size.x && y > trigger.position.y && y < trigger.position.y + trigger.size.y) {
@@ -226,24 +235,21 @@ void PlayMode::update(float elapsed) {
 	down.downs = 0;
 }
 
-int PlayMode::drawText(std::string text, glm::vec2 position, size_t width, std::vector<PPUDataStream::Vertex>* triangle_strip) {
+int PlayMode::drawText(std::string text, glm::vec2 position, size_t width, std::vector<PPUDataStream::Vertex>* triangle_strip, glm::u8vec4 color) {
 	//helper to put a single tile somewhere on the screen:
-	auto draw_tile = [&](glm::ivec2 const& lower_left, uint8_t tile_index) {
+	auto draw_tile = [&](glm::ivec2 const& lower_left, uint8_t tile_index, glm::u8vec4 tile_color) {
 		float font_multiplier = (float)font_size / char_height;
 
 		//convert tile index to lower-left pixel coordinate in tile image:
 		glm::ivec2 tile_coord = glm::ivec2(tile_index * char_width, 0);
 
 		//build a quad as a (very short) triangle strip that starts and ends with degenerate triangles:
-		triangle_strip->emplace_back(glm::ivec2(lower_left.x + 0, lower_left.y - (int)(char_bottom * font_multiplier)), glm::ivec2(tile_coord.x + 0, tile_coord.y + 0));
+		triangle_strip->emplace_back(glm::ivec2(lower_left.x + 0, lower_left.y - (int)(char_bottom * font_multiplier)), glm::ivec2(tile_coord.x + 0, tile_coord.y + 0), tile_color);
 		triangle_strip->emplace_back(triangle_strip->back());
-		triangle_strip->emplace_back(glm::ivec2(lower_left.x + 0, lower_left.y + (int)(char_top * font_multiplier)), glm::ivec2(tile_coord.x + 0, tile_coord.y + char_height));
-		triangle_strip->emplace_back(glm::ivec2(lower_left.x + (int)(char_width * font_multiplier), lower_left.y - (int)(char_bottom * font_multiplier)), glm::ivec2(tile_coord.x + char_width, tile_coord.y + 0));
-		triangle_strip->emplace_back(glm::ivec2(lower_left.x + (int)(char_width * font_multiplier), lower_left.y + (int)(char_top * font_multiplier)), glm::ivec2(tile_coord.x + char_width, tile_coord.y + char_height));
+		triangle_strip->emplace_back(glm::ivec2(lower_left.x + 0, lower_left.y + (int)(char_top * font_multiplier)), glm::ivec2(tile_coord.x + 0, tile_coord.y + char_height), tile_color);
+		triangle_strip->emplace_back(glm::ivec2(lower_left.x + (int)(char_width * font_multiplier), lower_left.y - (int)(char_bottom * font_multiplier)), glm::ivec2(tile_coord.x + char_width, tile_coord.y + 0), tile_color);
+		triangle_strip->emplace_back(glm::ivec2(lower_left.x + (int)(char_width * font_multiplier), lower_left.y + (int)(char_top * font_multiplier)), glm::ivec2(tile_coord.x + char_width, tile_coord.y + char_height), tile_color);
 		triangle_strip->emplace_back(triangle_strip->back());
-		//if (lower_left.y > ScreenHeight || lower_left.y + lower_left.y - (int)(char_bottom * font_multiplier) > ScreenHeight || lower_left.y + (int)(char_top * font_multiplier) > ScreenHeight) {
-		//	std::cout << lower_left.y << std::endl;
-		//}
 	};
 
 	const char* text_c_str = text.c_str();
@@ -318,7 +324,11 @@ int PlayMode::drawText(std::string text, glm::vec2 position, size_t width, std::
 			}
 
 			// Draw character
-			draw_tile(glm::ivec2((int)(current_x + pos[i].x_offset / 64.), (int)(current_y + pos[i].y_offset / 64.)), (uint8_t)text[start_line + i] - (uint8_t)min_char);
+			glm::u8vec4 tile_color = color;
+			if (in_trigger || text[start_line + i] == ']') {
+				tile_color = trigger_color;
+			}
+			draw_tile(glm::ivec2((int)(current_x + pos[i].x_offset / 64.), (int)(current_y + pos[i].y_offset / 64.)), (uint8_t)text[start_line + i] - (uint8_t)min_char, tile_color);
 			
 			// Advance position
 			current_x += pos[i].x_advance / 64.;
@@ -355,7 +365,21 @@ std::string PlayMode::lineText(const State& state, size_t line_num) {
 int PlayMode::drawState(const State& state, glm::ivec2 position, std::vector<PPUDataStream::Vertex>* triangle_strip) {
 	int y = position.y;
 	for (size_t i = 0; i < state.lines.size(); i ++) {
-		y -= drawText(lineText(state, i), glm::vec2(position.x, y), state_width, triangle_strip);
+		// Set character-specific colors
+		glm::u8vec4 color = default_color;
+		std::string speaker = stateText(state, state.lines[i].speaker_start, state.lines[i].speaker_end);
+		if (speaker == "Angela" || speaker == "Child") {
+			color = angela_color;
+		} else if (speaker == "You") {
+			color = you_color;
+		} else if (speaker == "Z") {
+			color = z_color;
+		}
+
+		// Draw the line
+		y -= drawText(lineText(state, i), glm::vec2(position.x, y), state_width, triangle_strip, color);
+
+		// Move down to create space for the next line
 		y -= font_size;
 	}
 	return position.y - y;
@@ -365,19 +389,23 @@ void PlayMode::drawTimeline(const Timeline& timeline, std::vector<PPUDataStream:
 	int x = timeline.index * timeline_width;
 	int y = ScreenHeight;
 
-	drawText("Year " + std::to_string(timeline.date), glm::vec2(x, y), timeline_width, triangle_strip);
+	drawText("Year " + std::to_string(timeline.date), glm::vec2(x, y), timeline_width, triangle_strip, date_color);
 	y -= font_size * 2;
 
 	for (size_t i = 0; i < timeline.states.size(); i++) {
-		if (scroll_to_new_state && timeline.index == current_timeline) {
+		if (scroll_to_timeline_end && timeline.index == observing_timeline && (i == 0 || observing_timeline == current_timeline)) {
+			scroll_x = x - (ScreenWidth - timeline_width) / 2;
 			scroll_y = y - ScreenHeight;
-			if (timeline.states.size() == 1) {
+			if (i == 0) {
 				scroll_y += font_size * 2;
 			}
 		}
+
 		y -= drawState(timeline.states[i], glm::vec2(x, y), triangle_strip);
 		y -= font_size;
 	}
+
+	drawText(std::to_string(timeline.index), glm::vec2(x - timeline_width * 0.05, scroll_y + (int)ScreenHeight), timeline_width, triangle_strip, timeline_index_color);
 }
 
 void PlayMode::drawTriangleStrip(const std::vector<PPUDataStream::Vertex>& triangle_strip) {
@@ -405,7 +433,7 @@ void PlayMode::drawTriangleStrip(const std::vector<PPUDataStream::Vertex>& trian
 			glm::vec4(2.0f / ScreenWidth, 0.0f, 0.0f, 0.0f),
 			glm::vec4(0.0f, 2.0f / ScreenHeight, 0.0f, 0.0f),
 			glm::vec4(0.0f, 0.0f, 1.0f, 0.0f),
-			glm::vec4(-1.0f, -1.0f - scroll_y * 2.f / ScreenHeight, 0.0f, 1.0f)
+			glm::vec4(-1.0f - scroll_x * 2.f / ScreenWidth, -1.0f - scroll_y * 2.f / ScreenHeight, 0.0f, 1.0f)
 		);
 		glUniformMatrix4fv(tile_program->OBJECT_TO_CLIP_mat4, 1, GL_FALSE, glm::value_ptr(OBJECT_TO_CLIP));
 	}
@@ -466,7 +494,7 @@ void PlayMode::draw(glm::uvec2 const& drawable_size) {
 		drawTimeline(timelines[i], &triangle_strip);
 	}
 
-	scroll_to_new_state = false;
+	scroll_to_timeline_end = false;
 
 	drawTriangleStrip(triangle_strip);
 
@@ -493,9 +521,12 @@ PlayMode::PPUTileProgram::PPUTileProgram() {
 		"in vec4 Position;\n"
 		"in ivec2 TileCoord;\n"
 		"out vec2 tileCoord;\n"
+		"in vec4 Color;\n"
+		"out vec4 color;\n"
 		"void main() {\n"
 		"	gl_Position = OBJECT_TO_CLIP * Position;\n"
 		"	tileCoord = TileCoord;\n"
+		"	color = Color;\n"
 		"}\n"
 		,
 		//fragment shader:
@@ -503,14 +534,19 @@ PlayMode::PPUTileProgram::PPUTileProgram() {
 		"uniform sampler2D TILE_TABLE;\n"
 		"in vec2 tileCoord;\n"
 		"out vec4 fragColor;\n"
+		"in vec4 color;\n"
 		"void main() {\n"
 		"fragColor = texelFetch(TILE_TABLE, ivec2(tileCoord), 0);\n"
+		"fragColor.r = color.r;\n"
+		"fragColor.g = color.g;\n"
+		"fragColor.b = color.b;\n"
 		"}\n"
 	);
 
 	//look up the locations of vertex attributes:
 	Position_vec2 = glGetAttribLocation(program, "Position");
 	TileCoord_ivec2 = glGetAttribLocation(program, "TileCoord");
+	Color_vec4 = glGetAttribLocation(program, "Color");
 	//Palette_int = glGetAttribLocation(program, "Palette");
 
 	//look up the locations of uniforms:
@@ -566,6 +602,17 @@ PlayMode::PPUDataStream::PPUDataStream() {
 		(GLbyte*)0 + offsetof(Vertex, TileCoord) //offset
 	);
 	glEnableVertexAttribArray(tile_program->TileCoord_ivec2);
+
+	// Add color attribute
+	glVertexAttribPointer(
+		tile_program->Color_vec4, //attribute
+		4, //size
+		GL_FLOAT, //type
+		GL_FALSE, //normalized
+		sizeof(Vertex), //stride
+		(GLbyte*)0 + offsetof(Vertex, Color) //offset
+	);
+	glEnableVertexAttribArray(tile_program->Color_vec4);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);

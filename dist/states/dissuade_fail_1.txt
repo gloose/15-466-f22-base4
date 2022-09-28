@@ -1,0 +1,18 @@
+[I'm a time traveler]
+
+*You: I'm a time traveler. If I can't reason with you, I'll stop you by force.
+
+*Z: Ridiculous. Of course, I had considered that such technology might be possible, but it is LAUGHABLE to suppose that humanity could manage it after WHAT I WILL DO TO THEM! They are all FOOLS! If time travel is possible, [WHO ELSE COULD DO IT BUT ME???]
+
+*Z: Whoever you are, you may threaten me ALL YOU LIKE, but you CAN'T STOP THIS. Even if you KILL ME, the MOMENT my heart stops, it will send a signal to RELEASE THE VIRUS TO THE WORLD! I had this prepared [15 YEARS AGO], just WAITING for some IMBECILE to PUSH ME OVER THE EDGE! Now, FINALLY, I believe the time has come.
+
+He hangs up. His exaggerated rage would be almost comical but for the realization that the fate of the entire world was in the hands of an unstable genius one bad phone call away from genocide. True to his word, within minutes you can see thick black chemical trails slashing through the morning sky.
+
+You have achieved Ending A: Another Doomed Timeline
+
+Unless there's somewhere else you can go...?
+
+-------------------------------------------------------------------------------
+
+[Go to 2034] start_past
+[15 YEARS AGO] ending_o

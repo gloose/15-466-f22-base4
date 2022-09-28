@@ -1,0 +1,20 @@
+[yourself]
+
+*You: Yourself. I am you from the future, Z.
+
+*Z: ...
+
+*Z: ...
+
+*Z: ...I knew it was possible. But I can't trust you. Prove to me that you have seen the future. What exactly am I going to do?
+
+You describe to him the events of the Calamity in vivid detail. He seems satisfied, both with your answer and with his future accomplishments.
+
+*Z: Very well. I believe that you are a time traveler. But any time traveler would know what you have described. How do I know that you are myself?
+
+With the fate of humanity on the line, you desperately search your memories for anything that could convince this madman to believe your story.
+
+-------------------------------------------------------------------------------
+
+[WHO ELSE COULD DO IT BUT ME???] dissuade_success
+[Go to 2034] start_past

@@ -1,0 +1,17 @@
+[give him a call]
+
+You check the contact list on your watch and find a phone number for a friend named 'Z', then press 'call'. It rings for half a second before the call is declined. You try again, and the tone is even shorter. On the third attempt, the voice of an unhinged young man in his late twenties almost startles you off the bed.
+
+*Z: How the HELL did you get this number? If you absolutely INSIST on keeping me from my research, I certainly HOPE that you have a VERY GOOD REASON FOR IT! I swear to you, for every SECOND that you take from me I will MOVE THE APOCALYPSE FORWARD BY A WEEK!
+
+You can almost feel the spittle hitting your face. He sounds serious. What do you do?
+
+[Hang up]
+
+-------------------------------------------------------------------------------
+
+[dissuade him from genocide] dissuade_1
+[DON'T KILL THEM!] dissuade_2
+[Hang up] after_hang_up
+[Go to 2034] start_past
+[15 YEARS AGO] ending_o

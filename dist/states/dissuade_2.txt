@@ -1,0 +1,16 @@
+[DON'T KILL THEM!]
+
+You recall his psychotic tone of voice from the timeline you abandoned. Like a caricature of madness. It is easy to replicate.
+
+*You: DON'T KILL THEM!
+
+*Z: ...
+
+*Z: ...Are you mocking me? Who are you?
+
+[I'm a time traveler]
+
+-------------------------------------------------------------------------------
+
+[I'm a time traveler] dissuade_fail_1
+[yourself] dissuade_3

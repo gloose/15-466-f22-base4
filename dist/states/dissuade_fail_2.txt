@@ -1,0 +1,22 @@
+[yourself]
+
+*You: I am you from the future, Z.
+
+*Z: ...
+
+*Z: ...
+
+*Z: ...Heh. An interesting claim. I had, of course, considered that time travel might be possible. But if you're going to impersonate me, you really need to try harder than that. Your voice has been wrong from the beginning. You could at least make the effort to imitate my mannerisms.
+
+*Z: I must admit, it is a seductive idea, to imagine that I truly achieved such an incredible feat of technology. But you cannot fool me. And you will pay dearly for this attempt at deception.
+
+He hangs up. You are chilled by his rapid shifts of mood, but more so by the implication of what he intends to do. Sure enough, within minutes you can see thick black chemical trails slashing through the morning sky.
+
+You have achieved Ending A: Another Doomed Timeline
+
+Unless there's somewhere else you can go...?
+
+-------------------------------------------------------------------------------
+
+[Go to 2034] start_past
+[15 YEARS AGO] ending_o

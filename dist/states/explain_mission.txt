@@ -1,0 +1,25 @@
+[your help]
+
+*You: You said need my help? Why?
+
+*Angela: To stop the zombie apocalypse, of course! Oh, don't look at me like that. I know the name hasn't caught on yet since it sounds so cliche, but that's what this is, right?
+
+*Angela: I don't know if you know this, but all of this was set in motion by one person. A sort of child prodigy turned mad scientist, who goes by Professor Z. Yeah, I know. Look, I didn't pick the name, okay? The point is, 60 years ago he released a pathogen that dealt all of humanity a crippling blow from which we would never recover. In the distant future, it was too late to reclaim the world from the zombies, but a technological breakthrough from a small team of brilliant researchers gave us these beauties.
+
+She raises a tiny arm with a wide smile, making a valiant effort to hide the strain from the weight of the watches covering it from wrist to shoulder.
+
+*Angela: With these, we can go back in time, but not back to before we were born. That's why I need you. You are the last in a long line of time travelers who all went back as far as they could, then passed on their watches to the oldest person they could find.
+
+*Angela: That last part is important. The older the traveler, the fewer jumps it takes to get all the way back, and the fewer [timelines] we have to create. When the world is as awful as this one, we prefer not to make too many copies of it. Better not to subject more people to the same hell we live in.
+
+*Angela: That's why I'm so happy to have met you! With 72 years to work with, you can go all the way back with 12 years to spare and stop the Professor yourself. This timeline is the last one that needs to suffer as we have.
+
+*Angela: Any other questions?
+
+[No, I'm ready]
+
+-------------------------------------------------------------------------------
+
+[timeline] explain_timelines
+[timelines] explain_timelines
+[No, I'm ready] leave_present
