@@ -393,7 +393,7 @@ void PlayMode::drawTimeline(const Timeline& timeline, std::vector<PPUDataStream:
 	y -= font_size * 2;
 
 	for (size_t i = 0; i < timeline.states.size(); i++) {
-		if (scroll_to_timeline_end && timeline.index == observing_timeline && (i == 0 || observing_timeline == current_timeline)) {
+		if (scroll_to_timeline_end && timeline.index == observing_timeline && (i == 0 || observing_timeline == (int)current_timeline)) {
 			scroll_x = x - (ScreenWidth - timeline_width) / 2;
 			scroll_y = y - ScreenHeight;
 			if (i == 0) {
